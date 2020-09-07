@@ -3,6 +3,7 @@ const pkgInfo = require('./package.json')
 const SessionClient = require('../node-session-client/session-client.js')
 
 const client = new SessionClient()
+client.groupInviteTextTemplate = 'You can join {name} at {url}'
 if (fs.existsSync('lastHash.txt')) {
   client.lastHash = fs.readFileSync('lastHash.txt').toString()
 }
@@ -18,12 +19,11 @@ client.loadIdentity({
   })
   client.on('messages', msgs => {
     msgs.forEach(async msg => {
-      console.log('msg', msg)
-      // works on desktop
-      await client.sendOpenGroupInvite(msg.source, 'General Chat', 'chat.getsession.org', 1)
-      await client.sendOpenGroupInvite(msg.source, 'Session Feedback', 'feedback.getsession.org', 1)
-      await client.sendOpenGroupInvite(msg.source, 'Loki Community', 'loki.opensession.id', 1)
-      await client.sendOpenGroupInvite(msg.source, 'Chinese Chat', 'chat.cryptocommit.org', 1)
+      console.log('request', msg.source, msg.body)
+      await client.sendSafeOpenGroupInvite(msg.source, 'General Chat', 'chat.getsession.org', 1)
+      await client.sendSafeOpenGroupInvite(msg.source, 'Session Feedback', 'feedback.getsession.org', 1)
+      await client.sendSafeOpenGroupInvite(msg.source, 'Loki Community', 'loki.opensession.id', 1)
+      await client.sendSafeOpenGroupInvite(msg.source, 'Chinese Chat', 'chat.cryptocommit.org', 1)
       await client.send(msg.source, `Development depends on your support
 LZQqA5mj6zBRb9Z7AVb4KBhYtZWGzauaJ6DtsHUEatdeZYo1r9m8euWNZfQnhtVdVe2ZRo8R1b9yuMjHXTxe7knqEjPCK4u`)
     })
