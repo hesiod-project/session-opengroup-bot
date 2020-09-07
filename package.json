@@ -1,0 +1,24 @@
+{
+  "name": "loki-opengroup-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neuroscr/loki-opengroup-bot.git"
+  },
+  "keywords": [
+    "Session",
+    "Open",
+    "Groups"
+  ],
+  "author": "Ryan Tharp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neuroscr/loki-opengroup-bot/issues"
+  },
+  "homepage": "https://github.com/neuroscr/loki-opengroup-bot#readme"
+}
